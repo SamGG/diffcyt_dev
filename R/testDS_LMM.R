@@ -228,6 +228,11 @@ testDS_LMM <- function(d_counts, d_medians, formula, contrast,
   
   # LMM/LM testing pipeline
   
+  # check a formula is given, not a design
+  if (!"formula" %in% names(formula)) {
+    stop("The formula argument seems not to be created with createFormula().")
+  }
+  
   # transpose contrast matrix if created with 'createContrast' (required by 'glht')
   if (ncol(contrast) == 1 & nrow(contrast) > 1) {
     contrast <- t(contrast)
