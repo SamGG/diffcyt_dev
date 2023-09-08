@@ -262,11 +262,6 @@ testDS_LMM <- function(d_counts, d_medians, formula, contrast,
       lm_fun <- ifelse(formula$random_terms, lmer, lm)
       fit <- do.call(lm_fun, list(
         formula = formula$formula, data = data_i, weights = weights))
-      if (formula$random_terms) {
-        fit <- lmer(formula$formula, data = data_i, weights = weights)
-      } else {
-        fit <- lm(formula$formula, data = data_i, weights = weights)
-      }
       # test contrast
       test <- glht(fit, contrast)
       # return p-value
